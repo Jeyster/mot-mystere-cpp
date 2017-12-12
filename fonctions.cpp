@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <vector>
 
 using namespace std;
 
@@ -17,4 +18,23 @@ string shuffleLetters(string mysteryWord)
     }
 
     return shuffledWord;
+}
+
+void multipleCoutEndl(int const& number)
+{
+    for (int i(0); i < number; i++)
+    {
+        cout << "\n";
+    }
+}
+
+double tryAverage(vector<int> const& tryByWin)
+{
+    double average(0.);
+    for (int i(0); i < tryByWin.size(); i++)
+    {
+        average += tryByWin[i];
+    }
+
+    return average/tryByWin.size();
 }
