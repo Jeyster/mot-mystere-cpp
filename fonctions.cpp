@@ -2,6 +2,7 @@
 #include <string>
 #include <cstdlib>
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
@@ -37,4 +38,23 @@ double tryAverage(vector<int> const& tryByWin)
     }
 
     return average/tryByWin.size();
+}
+
+vector<string> importWordsList(string fileName)
+{
+    ifstream myStream(fileName);
+    if(!myStream)
+    {
+        cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << endl;
+        exit(0);
+    }
+
+    string line;
+    vector<string> wordsList;
+    while(getline(myStream, line))
+    {
+        wordsList.push_back(line);
+    }
+
+    return wordsList;
 }

@@ -9,26 +9,31 @@ using namespace std;
 
 int main()
 {
+    srand(time(0));
+
     string mysteryWord, shuffledWord, word;
     char stopGame;
     int numberOfGame(0), numberOfWin(0);
     vector<int> usedTryByGameWin;
+    vector<string> wordsList;
 
     cout << "-----------------------------" << endl;
     cout << "-------- Mot Mystere --------" << endl;
     cout << "-----------------------------" << endl << endl;
 
+    /* Ouverture du dico et stockage des mots dans un tableau */
+    wordsList = importWordsList("liste-mots/ods4.txt");
+
     do
     {
         int remaningTry(5);
 
-        //1 : On demande de saisir un mot
-        cout << "Saisissez un mot : ";
-        cin >> mysteryWord;
+        //1 : Choix mot mystere dans liste
+        int randomWord(rand() % wordsList.size());
+        mysteryWord = wordsList[randomWord];
         multipleCoutEndl(100);
 
         //2 : On mélange les lettres du mot
-        srand(time(0));
         shuffledWord = shuffleLetters(mysteryWord);
 
         //3 : On demande à l'utilisateur quel est le mot mystère
@@ -52,7 +57,7 @@ int main()
         }
         else
         {
-            cout << "Perdu..." << endl << endl;
+            cout << "Perdu, le mot mystere etait " << mysteryWord << "." << endl << endl;
         }
         cout << "Voulez-vous rejouer ? (O/n)" << endl;
         cin >> stopGame;
